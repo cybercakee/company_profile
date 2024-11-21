@@ -22,7 +22,7 @@ class BlogController extends Controller
     function getDataSecquence($category_id, $number)
     {
         $nextData = Blog::where('category_blog_id', $category_id)->where('sequence_post', $number)->first();
-        $prevData = Blog::where('category_blog_id', $category_id)->where('sequence_post', $number-1)->first();
+        $prevData = Blog::where('category_blog_id', $category_id)->where('sequence_post', $number - 1)->first();
 
         return response()->json([
             'message' => 'data found',
@@ -41,6 +41,7 @@ class BlogController extends Controller
                 'slug' => $data->slug,
                 'description' => $data->description,
                 'sequence_post' => $data->sequence_post,
+                'category_blog_id' => $data->category_blog_id,
                 'category_name' => $data->category->name ?? 'UNCATEGORIES'
             ];
         } else {
