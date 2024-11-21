@@ -21,7 +21,7 @@ class BlogController extends Controller
     }
     function getDataSecquence($category_id, $number)
     {
-        $nextData = Blog::where('category_blog_id', $category_id)->where('sequence_post', $number)->first();
+        $nextData = Blog::where('category_blog_id', $category_id)->where('sequence_post', $number + 1)->first();
         $prevData = Blog::where('category_blog_id', $category_id)->where('sequence_post', $number - 1)->first();
 
         return response()->json([
