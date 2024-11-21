@@ -12,7 +12,7 @@ class BlogController extends Controller
 {
     function getDataBlog()
     {
-        $data = Blog::with(['category'])->get()->groupBy('category.name');
+        $data = Blog::with(['category'])->orderBy('sequence_post', 'ASC')->get()->groupBy('category.name');
 
         return response()->json([
             'message' => 'data found',
@@ -57,7 +57,7 @@ class BlogController extends Controller
     {
         $dataSlug = Str::lower($category);
         $category_id = CategoryBlog::where('slug', $dataSlug)->first()->id;
-        $data = Blog::where('category_blog_id', $category_id)->get()->map(function ($data) {
+        $data = Blog::where('category_blog_id', $category_id)->orderBy('sequence_post','ASC')->get()->map(function ($data) {
             return [
                 'title' => $data->title,
                 'image' => $data->image,
