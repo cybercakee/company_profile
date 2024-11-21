@@ -19,6 +19,7 @@ Route::prefix('v1')->group(function () {
     Route::controller(BlogController::class)->prefix('blog')->group(function () {
         route::get('/list', 'getDataBlog');
         route::get('/{slug}/detail', 'getDataBlogBySlug');
+        route::get('/{category_id}/{number}/get', 'getDataSecquence');
         route::get('/category/{category}/detail', 'getDataBlogByCategory');
     });
 });

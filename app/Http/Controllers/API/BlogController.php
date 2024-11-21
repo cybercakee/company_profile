@@ -19,6 +19,17 @@ class BlogController extends Controller
             'data' => $data
         ], 200);
     }
+    function getDataSecquence($category_id, $number)
+    {
+        $nextData = Blog::where('category_blog_id', $category_id)->where('sequence_post', $number)->first();
+        $prevData = Blog::where('category_blog_id', $category_id)->where('sequence_post', $number-1)->first();
+
+        return response()->json([
+            'message' => 'data found',
+            'nextData' => $nextData,
+            'prevData' => $prevData,
+        ], 200);
+    }
     function getDataBlogBySlug($slug)
     {
         $data = Blog::where('slug', $slug)->first();
